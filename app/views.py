@@ -184,11 +184,10 @@ class viewsets_Movie(viewsets.ModelViewSet):
     search_fields = ['movie']
     
 class Reservation_Movie(viewsets.ModelViewSet):
-    queryset = Reservation.objects.all()
+    queryset = Reservation.objects.all()    
     serializer_class = ReservationSerializers
 
-#8 Find movie
-@api_view(['GET'])
+#8 Find movie@api_view(['GET'])
 def find_movie(request):
     movies = Movie.objects.filter(  
         movie= request.data['movie'],
@@ -219,3 +218,15 @@ class Post_pk(generics.RetrieveUpdateDestroyAPIView):
   permission_classes = [IsAuthorOreadOnly]
   queryset = Post.objects.all()
   serializer_class = PostSerializer
+
+
+
+
+  #label='ID', 
+################################################################################################
+class MealViewSet(viewsets.ModelViewSet):
+    queryset = Meal.objects.all()
+    serializer_class = MealSerializers
+class RatingViewSet(viewsets.ModelViewSet):
+    queryset = Rating.objects.all()
+    serializer_class = RatingSerializers

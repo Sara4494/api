@@ -6,6 +6,8 @@ routrr= DefaultRouter()
 routrr.register('guests',viewsets_guest)
 routrr.register('movies',viewsets_Movie)
 routrr.register('reservations',Reservation_Movie)
+routrr.register('MealViewSet',MealViewSet)
+routrr.register('RatingViewSet',RatingViewSet)
 
 urlpatterns = [
     path('',no_rest_no_model,name= 'no_rest_no_model'),
@@ -22,7 +24,7 @@ urlpatterns = [
     path('mixin_pk/<int:pk>/',mixin_pk.as_view(),name= 'mixin_pk'),
     path('Generics_list',Generics_list.as_view(),name= 'Generics_list'),
     path('Generics_pk/<int:pk>/',Generics_pk.as_view(),name= 'Generics_pk'),
-    path('Generics_list/',include(routrr.urls)),#erics_list/guests/3/
+    path('api/',include(routrr.urls)),#erics_list/guests/3/
     path('find_movie/',find_movie,name= 'find_movie'),
     path('new_reservation/',new_reservation,name= 'new_reservation'),
     #rest auth urls
@@ -34,6 +36,8 @@ urlpatterns = [
      #python manage.py migrate
     
     path('Post_pk/<int:pk>/',Post_pk.as_view(),name= 'Post_pk'),
+    ##########################################
+   
     
      
     ]

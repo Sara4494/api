@@ -1,6 +1,6 @@
 from django.db import models
 from rest_framework.authtoken.models import Token
-
+from django.core.validators import MaxValueValidator ,MinValueValidator
 
 from django.db.models.signals import post_save
 from django.dispatch import receiver
@@ -33,3 +33,21 @@ class Post (models.Model):
 def TokenCreate(sender, instance, created, **kwargs):
     if created:
         Token.objects.create(user=instance)
+####################################################################
+#uuid
+           
+class Meal(models.Model):
+    title = models.CharField(max_length=40)
+    description = models.TextField(max_length=350)
+
+    def __str__(self):
+        return self.title
+class Rating(models.Model):
+    meal =models.ForeignKey(Meal,on_delete=models.CASCADE)
+    user =models.ForeignKey(User,on_delete=models.CASCADE)
+    stars = models.IntegerField(validators=[MinValueValidator(1),MaxValueValidator(5)])
+    #def __str__(self):
+     #   return self.meal
+    class Mets:
+        unique_together  = (('user','meal'))
+        index_together  =(('user','meal'))

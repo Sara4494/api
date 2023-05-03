@@ -20,3 +20,13 @@ class PostSerializer(serializers.ModelSerializer):
         model = Post
         fields =  '__all__'
 #uuid
+#######################################################
+class MealSerializers(serializers.ModelSerializer):
+    class Meta:
+        model = Meal
+        fields = ['id','title','description']
+class RatingSerializers(serializers.ModelSerializer):
+    class Meta:
+        model = Rating
+        fields = ['id','meal','user','stars'] 
+        
